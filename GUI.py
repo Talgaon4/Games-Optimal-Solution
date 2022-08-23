@@ -145,3 +145,4 @@ class GUI:
         opt_move_button = Button(text="Best Move", highlightthickness=0, command=self.display_opt_move)
         opt_move_button.place(x=70 * BOX_LENGTH, y=200)
 
+

@@ -89,3 +89,4 @@ class BestMove:
             a[k] = x + y
             y = x + y - 1
             yield a[:k + 1]
+
