@@ -1,5 +1,6 @@
 from GUI import GUI
+from intro import Intro
+# game = GUI()
 
-game = GUI()
-
+intro = Intro()
 
