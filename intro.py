@@ -49,4 +49,4 @@ class Intro:
     def start_game(self):
         for widget in self.window.winfo_children():
             widget.destroy()
-        game = GUI()
+        game = GUI(window=self.window)

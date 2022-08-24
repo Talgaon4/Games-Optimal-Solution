@@ -3,7 +3,7 @@ import random
 from bestMove import BestMove
 
 
-BOX_LENGTH = 10
+BOX_LENGTH = 9
 BACKGROUND_COLOR = "#2B2B2B"
 OPEN_CARD_COLOR = '#E4DCAD'
 CLOSE_CARD_COLOR = '#D36B00'
@@ -11,15 +11,15 @@ CLOSE_CARD_COLOR = '#D36B00'
 
 class GUI:
 
-    def __init__(self):
-        self.window = Tk()
+    def __init__(self, window):
+        self.window = window
         self.window.title("Shut The Box")
         self.window.config(padx=0, pady=30, bg=BACKGROUND_COLOR)
         self.canvas = Canvas(width=88 * BOX_LENGTH, height=270)
         self.available_cards = [True] * 12
         self.is_first_roll = True
-        self.already_choose_card = False
         self.can_roll_again = True
+        self.already_choose_card = False
         self.cards_list = []
         self.dice_sum_left = 0
         self.dice_sum = 0
@@ -52,7 +52,7 @@ class GUI:
             self.canvas.grid(row=0, column=col)
             self.canvas.config(bg=BACKGROUND_COLOR, highlightthickness=0)
 
-    def generate_dices(self):
+    def generate_dices(self, roll_1_t_2_f):
         if not self.can_roll_again:
             return 0
 
@@ -62,17 +62,26 @@ class GUI:
         dice_value = {'\u2680': 1, '\u2681': 2, '\u2682': 3, '\u2683': 4, '\u2684': 5, '\u2685': 6}
 
         dice_1, dice_2 = random.choice(dice), random.choice(dice)
+        if roll_1_t_2_f:
+            self.dice_sum = dice_value[dice_1]
+            self.canvas.itemconfig(self.dice_1_2, text=f" {dice_1}", fill="white")
+        else:
+            self.dice_sum = dice_value[dice_1] + dice_value[dice_2]
+            self.canvas.itemconfig(self.dice_1_2, text=f"{dice_1} {dice_2}", fill="white")
 
-        self.dice_sum = dice_value[dice_1] + dice_value[dice_2]
         self.dice_sum_left = self.dice_sum
 
         self.canvas.itemconfig(self.sum_left, text=f"Left: {self.dice_sum}", fill="red")
-        self.canvas.itemconfig(self.dice_1_2, text=f"{dice_1} {dice_2}", fill="white")
         self.canvas.itemconfig(self.dice_sum_text, text=f"Dice Rolled: {self.dice_sum}", fill="black")
         self.can_roll_again = False
 
+    def is_7_8_9_down(self):
+        if self.available_cards[6] or self.available_cards[7] or self.available_cards[8]:
+            return False
+        return True
+
     def roll(self):
-        roll_button = Button(text="Roll", highlightthickness=0, command=self.generate_dices)
+        roll_button = Button(text="Roll 2", highlightthickness=0, command=lambda val=False: self.generate_dices(val))
         roll_button.place(x=43*BOX_LENGTH, y=200)
 
     def card_down(self, card_val):
@@ -89,6 +98,12 @@ class GUI:
         if self.dice_sum_left == 0:
             self.dice_sum_used = 0
             self.can_roll_again = True
+            if self.is_7_8_9_down():
+                self.roll_1_btn()
+
+    def roll_1_btn(self):
+        roll_1_button = Button(text="Roll 1", highlightthickness=0, command=lambda val=True: self.generate_dices(val))
+        roll_1_button.place(x=38 * BOX_LENGTH, y=200)
 
     def card_is_legal(self, rolled_val, card_val):
         if rolled_val == 0:
@@ -115,8 +130,8 @@ class GUI:
         self.canvas = Canvas(width=88 * BOX_LENGTH, height=270)
         self.available_cards = [True] * 12
         self.is_first_roll = True
-        self.already_choose_card = False
         self.can_roll_again = True
+        self.already_choose_card = False
         self.cards_list = []
         self.dice_sum_left = 0
         self.dice_sum = 0
@@ -124,6 +139,8 @@ class GUI:
         self.open_cards = set()
         self.sum_left = self.canvas.create_text(25 * BOX_LENGTH, 200, text="", font=("Ariel", 30))
         self.opt_move_txt = self.canvas.create_text(70 * BOX_LENGTH, 250, text="", font=("Ariel", 15))
+        self.dice_1_2 = self.canvas.create_text(44 * BOX_LENGTH, 170, text=f"", font=("Ariel", 40))
+        self.dice_sum_text = self.canvas.create_text(44 * BOX_LENGTH, 250, text=f"", font=("Ariel", 20))
 
     def get_open_cards(self):
         for i in range(BOX_LENGTH):
