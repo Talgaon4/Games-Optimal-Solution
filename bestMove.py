@@ -6,11 +6,15 @@ class BestMove:
 
     def __init__(self):
 
-        self.configs = self.powerset(range(1, 11))
-        self.ways_to_roll = {2: 1, 3: 2, 4: 3, 5: 4, 6: 5, 7: 6, 8: 5, 9: 4, 10: 3, 11: 2, 12: 1}
+        self.configs = self.powerset(range(1, 10))  # all the permutations of digits from 1 to 9
+        self.ways_to_roll = {2: 1, 3: 2, 4: 3, 5: 4, 6: 5, 7: 6, 8: 5, 9: 4, 10: 3, 11: 2, 12: 1}  # all rolls options
         self.max_moves = 12
+        """ All permutations so that the sum of the elements in each permutation is equal to the sum of a possible toss
+         and the elements are digits from 1 to 9 """
         self.move_list = {config: {roll: list(self.gen_moves(config, roll))
                                    for roll in range(2, 13)} for config in self.configs}
+        """ The moves are initialized so that for each permutation the number of legal rolls
+         that it may lead to are counted if the user chooses this permutation. """
         self.num_moves = {config: {i: 0 for i in range(1, self.max_moves)} for config in self.configs}
         self.best_moves = {}
         self.find_all_moves()
@@ -90,3 +94,4 @@ class BestMove:
             y = x + y - 1
             yield a[:k + 1]
 
+best = BestMove()
