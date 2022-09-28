@@ -1,3 +1,4 @@
+import random
 from tkinter import *
 import tkinter as tk
 from math import inf
@@ -22,7 +23,6 @@ PLAYER = {"player x": {
         "color": O_COLOR
     }
 }
-
 
 class TicTacToe:
     def __init__(self, window):
@@ -181,7 +181,10 @@ class TicTacToe:
 
     def get_best_move(self):
         depth = len(self.empty_cells())  # The remaining of empty cells
-        row, col, _ = self.minimax(depth, self.player_turn)  # the optimal move for computer
+        if depth == 9:  # if the board is fully empty, then picking a random corner is the best strategy
+            row, col = random.choice([[0, 0], [0, 2], [2, 0], [2, 2]])
+        else:
+            row, col, _ = self.minimax(depth, self.player_turn)  # Returns the best move for the current player
         self.clicked_cell([row, col])
 
     def clear_window(self):
@@ -207,4 +210,3 @@ class TicTacToe:
         self.menu_frame.grid(row=0, column=0, pady=150, padx=(40, 0), sticky=W)
         self.message_frame.grid(row=0, column=1)
         self.grid_frame.grid(row=0, column=2)
-

@@ -27,7 +27,7 @@ class Simon:
 
         self.high_score_msg.grid(row=0, column=0, pady=5)
         self.score_msg.grid(row=1, column=0, pady=2)
-        self.grid_frame.grid(row=2, column=0, pady=10)
+        self.grid_frame.grid(row=2, column=0, pady=5)
         self.game_over_msg.grid(row=3, column=0, pady=5)
         self.game_buttons_frame.grid(row=4, column=0)
 
