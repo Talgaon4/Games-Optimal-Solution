@@ -4,6 +4,8 @@ In the application you can play thinking and logic games implemented in Python a
 Although Tkinter is not the best GUI, its use is challenging and provides a good enough result.
 And the most important thing is that in most games you can use AI to help you make the best move at every stage of the game.
 
+To run the application you have to download the files and run the Intro file, all libraries are pre-built in Python
+
 ## 1. Shut The Box
 ![shutthebox](https://user-images.githubusercontent.com/96999217/192718861-cfcddb1e-0378-4445-ac3f-7cb5e9a9ae8e.gif)
 
