@@ -86,10 +86,7 @@ class Intro:
         )
 
         # add menu items to the File menu
-        file_menu.add_command(label='New')
-        file_menu.add_command(label='Open...')
-        file_menu.add_command(label='Close')
-        file_menu.add_separator()
+        file_menu.add_command(label='Menu', command=self.upload_menu)
 
         # add Exit menu item
         file_menu.add_command(
@@ -99,14 +96,10 @@ class Intro:
 
         # add the File menu to the menubar
         menubar.add_cascade(
-            label="File",
+            label="Game",
             menu=file_menu
         )
-        # create the Help menu
-        help_menu = Menu(
-            menubar,
-            tearoff=0
-        )
+
 
     def upload_menu(self):
         self.clear()
