@@ -1,9 +1,0 @@
-A round of the game consists of each player taking one turn to try to shut the box.
-A turn consists of a player repeatedly throwing the dice until he or she cannot continue.
-Each throw of the dice is taken as follows:
-If 7, 8 and 9 are all covered, the player decides whether to throw one die or two.
-If any of these 3 numbers are still uncovered, the player must use both dice.
-The player throws the die or dice into the box and adds up the pips.
- The player must then cover available numbers that add up to the total thrown.
- So for instance, if the total is 8, the player may choose one of the following options:
-8, 7&1, 6&2, 5&3, 5&2&1, 4&3&1

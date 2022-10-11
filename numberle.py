@@ -18,8 +18,7 @@ class Numberle:
         self.window = window
 
         self.random_number_list = [1, 2, 3, 4, 5]  # this list will change latter
-        self.random_number_str = ""
-        self.create_random_number()
+        self.random_number_list, self.random_number_str = self.create_random_number()
         self.g_y_history = []
         self.guesses_history_list = []
         self.temp_all_valid_permutations = []
@@ -42,10 +41,12 @@ class Numberle:
     def create_random_number(self):
         """ Generates a random number of length 4 from the digits 1,2,3,4,5 without repetitions
             by shuffle the 1 to 5 list and slice the last index, than convert the list to a string"""
+        random_number_str = ""
         shuffle(self.random_number_list)
-        self.random_number_list = self.random_number_list[0:4]
+        random_number_list = self.random_number_list[0:4]
         for i in range(DIG_LENGTH):
-            self.random_number_str += str(self.random_number_list[i])
+            random_number_str += str(random_number_list[i])
+        return random_number_list, random_number_str
 
     def create_entry_frame(self):
         entry_frame = Frame(self.window, bg=BACKGROUND)
@@ -108,9 +109,9 @@ class Numberle:
         if not is_best_move_guess:  # is_best_move_guess True if the AI guessed the number, else False
             self.user_guess = str(self.guess_entry.get())
             self.check_guess_is_valid()
-        else:  # if the AI guess and is it the first guess than guess random guess or 1234 in our case(improve latter)
+        else:  # if the AI guess and is it the first guess than guess random guess
             if self.guesses_cnt == 0:
-                self.user_guess = "1234"
+                _, self.user_guess = self.create_random_number()
             else:  # get the guess from the AI
                 self.user_guess = "".join(self.solver())
 
@@ -252,8 +253,7 @@ class Numberle:
         self.clear_window()
 
         self.random_number_list = [1, 2, 3, 4, 5]  # this list will change latter
-        self.random_number_str = ""
-        self.create_random_number()
+        self.random_number_list, self.random_number_str = self.create_random_number()
         self.g_y_history = []
         self.guesses_history_list = []
         self.temp_all_valid_permutations = []
