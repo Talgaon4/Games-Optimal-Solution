@@ -12,14 +12,14 @@ class Simon:
         self.window = window
         self.window.configure(bg=BACK_GROUND)
         self.score = 0
-        self.high_score = 0
+        self.high_score = self.get_high_score()
         self.buttons = []
         self.simon_sequence = []
         self.cur = 0
         self.grid_colors = ["#FFFDB7", "#AEF4A4", "#79B8D1", "#E36488"]
 
         self.score_msg = Label(self.window, text="Score: 0", font="Ariel 15 bold", bg=BACK_GROUND, fg="black")
-        self.high_score_msg = Label(self.window, text="High Score: 0", font="Ariel 15 bold", bg=BACK_GROUND, fg="black")
+        self.high_score_msg = Label(self.window, text=f"High Score: {self.high_score}", font="Ariel 15 bold", bg=BACK_GROUND, fg="black")
         self.game_over_msg = Label(self.window, text="", font="Ariel 20 bold", bg=BACK_GROUND, fg="red")
 
         self.grid_frame = self.create_game_grid()
@@ -80,9 +80,27 @@ class Simon:
                 self.score_msg.config(text=f"Score: {self.cur}")
                 if self.cur > self.high_score:  # update high score if needed
                     self.high_score = self.cur
+                    self.set_high_score(self.cur)
                     self.high_score_msg.config(text=f"High Score: {self.high_score}")
                 self.cur = 0
                 self.show_sequence()
+
+    @staticmethod
+    def get_high_score():
+        high_score = 0
+        try:
+            with open("simon_high_score.txt", "r+") as f:
+                high_score = int(f.read())
+
+        except IOError:
+            with open("simon_high_score.txt", "w+") as f:
+                f.write('0')
+        return high_score
+
+    @staticmethod
+    def set_high_score(score):
+        with open("simon_high_score.txt", "w+") as f:
+            f.write(f"{score}")
 
     def start(self):
         """ Resets all initial values and starts a new sequence"""
