@@ -1,32 +1,38 @@
 # World Of Games
-If you have too much free time and you like to exercise your brain then World Of Games is the solution for you.
-In the application you can play thinking and logic games implemented in Python and Tkinter.
-Although Tkinter is not the best GUI, its use is challenging and provides a good enough result.
-And the most important thing is that in most games you can use AI to help you make the best move at every stage of the game.
 
-To run the application you have to download the files and run the Intro file, all libraries are pre-built in Python
+Are you looking for a fun way to exercise your brain during your free time? Look no further than World Of Games! Our application offers a variety of thinking and logic games implemented in Python and Tkinter. While Tkinter may not be the most advanced GUI, it presents a challenging and satisfactory result. Additionally, in many of our games, AI is available to assist you in making the best move at every stage.
+
+To get started, simply download the files and run the Intro file. All necessary libraries are pre-built in Python.
 
 ## 1. Shut The Box                                
 
 ![shutthebox](https://user-images.githubusercontent.com/96999217/192718861-cfcddb1e-0378-4445-ac3f-7cb5e9a9ae8e.gif)
 
-The game starts with 9 open cards with the values 1-9.
-In each turn, 2 game dice are thrown, and then cards are taken down whose total value is the value of the throw so that the goal of the game is to take down all the cards.
-AI can be used to choose the best move so that choosing this move leaves the maximum number of options for possible throws in the next turn.
-*When the cards 7,8,9 are taken down then the user can decide whether to roll one or two dice
+Shut The Box is a game in which the player starts with 9 open cards with values 1-9. On each turn, 2 dice are thrown and cards with a total value equal to the throw are taken down. The goal of the game is to take down all the cards.
+
+In this version of the game, an AI can be used to choose the best move. This move will leave the maximum number of options for possible throws in the next turn.
+
+Note that when the cards 7, 8, or 9 are taken down, the player can decide whether to roll one or two dice.
 
 ## 2.TicTacToe                                                    
 
 ![tictactoe](https://user-images.githubusercontent.com/96999217/192719009-24bf5628-ebc3-4171-8bc8-d6a35fec3bc2.gif)
 
-TicTacToe with the addition of AI that will always choose the best move.
+This version of TicTacToe includes an AI that will always choose the best move.
+
+Enjoy the classic game with the added challenge of playing against a strong opponent!
 
 ## 3.Numberle                                       
 
 ![numberle](https://user-images.githubusercontent.com/96999217/192719072-c7856689-a1f9-47fb-9ef4-5152dfbf1571.gif)
 
-Guess a 4-digit random number from the digits 1,2,3,4,5 without repetitions, in 6 tries.
-For each guess, you will receive in green the number of digits that are in the correct position of the number being guessed, and in yellow the digits that appear in a number but in a different position.
+In Numberle, the player must guess a 4-digit random number composed of the digits 1-5 without any repetitions, all within 6 tries.
+
+For an extra challenge, the player can choose to use an AI assistant that will guess the best available answer on each turn.
+
+After each guess, the player will receive feedback in the form of green and yellow colors. Green indicates the number of digits that are in the correct position of the guessed number, while yellow indicates the number of digits that appear in the number but in a different position.
+
+Can you crack the code in just 6 tries?
 
 ## 4.Simon
 
